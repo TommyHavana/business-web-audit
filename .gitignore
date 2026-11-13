@@ -1,5 +1,48 @@
+# Dependencias, resultados de verificación y archivos generados
 node_modules/
-.DS_Store
 coverage/
 test-results/
+playwright-report/
+dist/
 *.log
+
+# Configuración privada, credenciales y material de claves
+.env
+.env.*
+*.env
+.npmrc
+.netrc
+credentials/
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+id_rsa
+id_ed25519
+credentials.json
+service-account*.json
+
+# Bases de datos y copias locales de revisiones
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+business-web-audit-*.json
+business-web-audit-*.md
+business-web-audit-datos-conservados.txt
+
+# Metadatos de escritorio, editores y temporales
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.cache/
+tmp/
+temp/
+*.tmp
+*.swp
+*~

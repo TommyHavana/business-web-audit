@@ -6,41 +6,44 @@ Está pensada también para aprender a argumentar una revisión. No asigna una n
 
 ## Arranque local
 
-Requisitos: Node.js 22 o superior y un navegador moderno. No hay dependencias de ejecución ni hace falta instalar paquetes.
+Necesitas Node.js 22 o superior con npm y un navegador moderno. Si aún no tienes el código, puedes descargarlo desde [el repositorio](https://github.com/TommyHavana/business-web-audit) o clonarlo:
 
 ```sh
-cd "/Users/nerea/Documents/Proyectos/git hub/busines web audit"
+git clone https://github.com/TommyHavana/business-web-audit.git
+cd business-web-audit
+```
+
+Desde la carpeta que contiene `package.json`, ejecuta:
+
+```sh
 npm run dev
 ```
 
-Abre <http://127.0.0.1:4173>. El servidor escucha solo en la interfaz local. Para detenerlo, pulsa `Ctrl+C` en la terminal.
+Abre <http://127.0.0.1:4173>. No hace falta instalar paquetes ni compilar. El servidor solo escucha en la interfaz local; para detenerlo, pulsa `Ctrl+C` en la terminal. Si necesitas otro puerto, establece la variable de entorno `PORT` antes del arranque (por ejemplo, `PORT=4174 npm run dev` en macOS o Linux) y abre la dirección que indique la terminal.
 
-Si el puerto está ocupado, usa otro:
+## Primer recorrido
+
+**Para aprender con el ejemplo:** en la ficha del negocio, elige **Cargar ejemplo** y luego **Abrir web ficticia**. Estudio Bruma incluye tres hallazgos y la revisión de las cinco áreas. Localiza las frases citadas en la web antes de leer la hipótesis y la propuesta. El caso es inventado y no contiene resultados comerciales medidos.
+
+**Para revisar tu propia web:** si quieres conservar el trabajo actual, descarga primero una **Copia JSON**. Cargar el ejemplo, iniciar una **Nueva revisión** o importar otra auditoría sustituye la que está abierta.
+
+1. Define negocio, objetivo, público, acción esperada, fecha y alcance. Por ejemplo: «Que los comercios que preparan una apertura puedan consultar sobre un proyecto de identidad visual». Indica qué páginas y dispositivos revisas.
+2. Examina oferta, público, evidencias, objeciones y contacto. Marca cada área como revisada cuando hayas inspeccionado el alcance previsto. Si no encuentras hallazgos, deja una nota de lo que comprobaste. Si no aplica, explica por qué.
+3. Añade un hallazgo con la observación, la evidencia y su ubicación. Distingue lo que puedes comprobar de la hipótesis opcional. Describe la recomendación, justifica su prioridad y explica en qué basas el esfuerzo estimado. Indica cómo comprobarías el cambio.
+4. Guarda el hallazgo. El borrador se conserva localmente, pero solo los hallazgos guardados se incorporan al informe. Guardar uno nuevo o modificado vuelve a dejar su área pendiente para que revises la cobertura.
+5. Abre el informe. Si faltan contexto, notas de cobertura o campos necesarios, o queda un borrador con contenido, verás qué falta y podrás exportar un informe provisional. **Revisión documentada** significa que completaste los datos y las cinco áreas; no demuestra la calidad de la web ni el efecto de las propuestas.
+6. Descarga el informe en Markdown o imprímelo desde el navegador. Guarda también una copia JSON para recuperar o trasladar la revisión editable.
+
+## Comprobaciones locales
+
+Desde la misma carpeta puedes ejecutar la comprobación de sintaxis y las pruebas del modelo y del servidor:
 
 ```sh
-PORT=4174 npm run dev
-```
-
-En ese caso, abre <http://127.0.0.1:4174>. Este fue el puerto utilizado para la revisión local de esta versión porque el 4173 estaba ocupado. Cada puerto tiene su propio almacenamiento en el navegador: exporta e importa una copia JSON si necesitas trasladar una auditoría entre ambos.
-
-```sh
-npm test
 npm run check
+npm test
 ```
 
-Primera versión local terminada: 17 pruebas automatizadas aprobadas y recorrido completo comprobado en Chromium, con vistas de escritorio y móvil. Consulta [STATUS.md](STATUS.md) para conocer las comprobaciones y sus límites. Para usarla, inicia el servidor con uno de los comandos anteriores. No se ha publicado ni desplegado.
-
-## Recorrido de una revisión
-
-1. Define el negocio, su objetivo, el público, la acción esperada y el alcance de la revisión. Un objetivo útil sería «facilitar que responsables de pequeños alojamientos soliciten una conversación sobre sus fotografías». Identifica las páginas y condiciones que examinas.
-2. Abre la web ficticia **Estudio Bruma**, o usa la auditoría de ejemplo para explorar un informe ya elaborado. Todo su contenido y sus hallazgos son inventados con fines didácticos; no representan una empresa real ni resultados medidos.
-3. Revisa oferta, público, evidencias, objeciones y contacto. Cada área empieza pendiente. Márcala como revisada cuando hayas inspeccionado lo incluido en el alcance. Si no encuentras hallazgos, deja una nota de lo que comprobaste. Si no aplica, explica por qué.
-4. Añade hallazgos. Separa lo observado de la posible interpretación y de la propuesta. Registra siempre evidencia localizable y justificación. El borrador de un hallazgo se conserva localmente, pero debes guardarlo como hallazgo para incorporarlo al informe. Guardar o editar un hallazgo vuelve a dejar su área pendiente para que revises la cobertura.
-5. Asigna una prioridad y un esfuerzo cualitativos con un motivo. Añade cómo comprobarías la utilidad del cambio. Si faltan datos para decidir, indica qué necesitas validar.
-6. Revisa el informe. Es provisional mientras falten contexto, áreas justificadas, campos obligatorios de los hallazgos o exista un borrador con contenido sin resolver. Un editor vacío no impide cerrar la revisión. El estado **«Revisión documentada»** indica que has completado los datos y la cobertura; no demuestra la calidad de la web ni el efecto comercial de las propuestas.
-7. Exporta el informe en Markdown o imprímelo desde el navegador. Guarda también una copia JSON si quieres recuperar o trasladar los datos editables.
-
-La importación JSON sustituye la auditoría local. Conserva una copia antes de importar otra o iniciar una auditoría nueva. El Markdown es un informe de lectura; el JSON es la copia que permite volver a editar.
+Consulta [STATUS.md](STATUS.md) para el historial de verificación, la cobertura y un recorrido manual reproducible.
 
 ## Cómo razonar un hallazgo
 
@@ -87,7 +90,7 @@ La prioridad no se deduce automáticamente del esfuerzo: un cambio fácil puede 
 ## Datos, copias y privacidad
 
 - Se guarda una única auditoría en `localStorage`, incluido el borrador del formulario. Los datos permanecen en ese navegador y origen; no hay cuenta, servidor de datos ni sincronización.
-- Cambiar de navegador, perfil, hostname o puerto puede mostrar otro almacenamiento. Borrar los datos del sitio elimina la copia local. El modo privado puede descartarla al cerrar la sesión.
+- Cambiar de navegador, perfil, nombre de host o puerto puede mostrar otro almacenamiento. Borrar los datos del sitio elimina la copia local. El modo privado puede descartarla al cerrar la sesión.
 - Exporta JSON para tener una copia independiente. Los informes y copias contienen el texto que hayas escrito; revisa su contenido antes de compartirlos. Evita introducir datos personales o confidenciales que no sean necesarios.
 - La importación valida la estructura de la copia antes de sustituir la auditoría. Admite trabajo incompleto: una URL o una fecha pendiente se conserva para corregirla y aparece en las comprobaciones del informe. Esto no certifica la veracidad de los datos.
 - Si la copia guardada está dañada, la aplicación evita sobrescribirla y ofrece descargar el texto original para intentar recuperarla. Si otra pestaña cambia la revisión, detiene el guardado automático de la pestaña anterior: exporta su copia JSON antes de recargar. Esta protección no permite editar en colaboración.
@@ -120,4 +123,4 @@ Es una aplicación de uso individual y local: no hay colaboración simultánea, 
 
 Cada auditoría admite hasta 200 hallazgos. La importación limita los archivos a 75 MB y los campos de texto tienen límites, habitualmente entre 300 y 8.000 caracteres según su función. El límite de importación no garantiza que el navegador pueda guardar una copia de ese tamaño: la capacidad de `localStorage` suele ser menor y depende del navegador. Ante un error de guardado, conserva una copia JSON antes de cerrar.
 
-La comprobación de interfaz se realizó en Chromium; no cubre Safari, Firefox ni una auditoría exhaustiva de accesibilidad. Se inspeccionaron los estilos de impresión mediante emulación, pero no la impresión física ni la paginación final de un PDF. Las protecciones frente a cuota agotada, datos locales corruptos y cambios desde otra pestaña están implementadas; no se simularon esos fallos en navegador durante esta revisión.
+La cobertura de navegadores, impresión y fallos de almacenamiento se detalla en [STATUS.md](STATUS.md).
