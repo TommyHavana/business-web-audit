@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#203b4b">
+    <meta name="description" content="Un cuaderno local para revisar una web con criterio comercial, evidencia y juicio humano.">
+    <title>Business Web Audit · Cuaderno de revisión</title>
+    <link rel="stylesheet" href="/src/styles.css">
+    <script type="module" src="/src/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <div id="app"></div>
+    <div id="notification" class="notification" role="status" aria-live="polite"></div>
+    <dialog id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-description">
+      <form method="dialog">
+        <h2 id="confirm-title"></h2>
+        <p id="confirm-description"></p>
+        <div class="button-row"><button value="cancel" class="button secondary">Cancelar</button><button value="confirm" class="button primary" id="confirm-button">Continuar</button></div>
+      </form>
+    </dialog>
+    <input type="file" id="import-file" accept=".json,application/json" hidden>
+    <noscript>Activa JavaScript para utilizar el cuaderno de revisión. Los datos se guardan en este navegador.</noscript>
+  </body>
+</html>
